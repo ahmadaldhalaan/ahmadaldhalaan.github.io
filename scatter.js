@@ -12,7 +12,7 @@ var svg = d3.select("#scatter")
     .attr("transform",
           "translate(" + 110 + "," + margin.top + ")");
 
-d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_data.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_data_short.csv", function(data) {
 
   // X axis
   var x = d3.scaleLinear()
@@ -52,7 +52,7 @@ d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_
 
   // Bubble color scale
   var myColor = d3.scaleOrdinal()
-    .domain(["Latin America & Caribbean", "Europe & Central Asia", "Sub-Saharan Africa", "East Asia & Pacific", "South Asia", "Middle East & North Africa", "North America"])
+    .domain(["LCR", "ECA", "SSA", "EAP", "SAR", "MNA", "NAR"])
     .range(d3.schemeCategory10);
 
 
@@ -90,17 +90,84 @@ d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_
       .style("opacity", 0)
   }
 
-  // Highlight
+  // ---------------------------//
+  //       HIGHLIGHT GROUP      //
+  // ---------------------------//
+
+  // What to do when one group is hovered
   var highlight = function(d){
     // reduce opacity of all groups
-    d3.selectAll(".bubbles").style("opacity", 0.8)
+    d3.selectAll(".bubbles").style("opacity", 0.05)
     // expect the one that is hovered
-    d3.selectAll("."+d).style("opacity", 0.95)
+    d3.selectAll("."+d).style("opacity", 1)
+    svg
+    .append("text")
+    .attr("x", x(10500))
+    .attr("y", y(75))
+    .text("Peru")
+    .style("font-size", "15px")
+    .style("fill", "white")
+
+svg
+    .append("text")
+    .attr("x", x(45000))
+    .attr("y", y(73))
+    .text("Saudi")
+    .style("font-size", "15px")
+    .style("fill", "white")
+
+svg
+    .append("text")
+    .attr("x", x(35000))
+    .attr("y", y(92))
+    .text("Spain")
+    .style("font-size", "15px")
+    .style("fill", "white")
+
+svg
+    .append("text")
+    .attr("x", x(40000))
+    .attr("y", y(67))
+    .text("Italy")
+    .style("font-size", "15px")
+    .style("fill", "white")
   }
 
-  // No Highlight
+  // And when it is not hovered anymore
   var noHighlight = function(d){
     d3.selectAll(".bubbles").style("opacity", 0.8)
+    svg
+    .append("text")
+    .attr("x", x(10500))
+    .attr("y", y(75))
+    .text("Peru")
+    .style("font-size", "15px")
+    .style("fill", "#1f77b4")
+
+svg
+    .append("text")
+    .attr("x", x(45000))
+    .attr("y", y(73))
+    .text("Saudi")
+    .style("font-size", "15px")
+    .style("fill", "#8c564b")
+
+svg
+    .append("text")
+    .attr("x", x(35000))
+    .attr("y", y(92))
+    .text("Spain")
+    .style("font-size", "15px")
+    .style("fill", "#ff7f0e")
+
+svg
+    .append("text")
+    .attr("x", x(40000))
+    .attr("y", y(67))
+    .text("Italy")
+    .style("font-size", "15px")
+    .style("fill", "#ff7f0e")
+
   }
 
 
@@ -132,7 +199,7 @@ d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_
       .data(valuesToShow)
       .enter()
       .append("circle")
-        .attr("cx", xCircle + 580)
+        .attr("cx", xCircle + 625)
         .attr("cy", function(d){ return height - 80 - z(d) } )
         .attr("r", function(d){ return z(d) })
         .style("fill", "none")
@@ -144,8 +211,8 @@ d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_
       .data(valuesToShow)
       .enter()
       .append("line")
-        .attr('x1', function(d){ return xCircle + 580 + z(d) } )
-        .attr('x2', xLabel + 580)
+        .attr('x1', function(d){ return xCircle + 625 + z(d) } )
+        .attr('x2', xLabel + 625)
         .attr('y1', function(d){ return height - 80 - z(d) } )
         .attr('y2', function(d){ return height - 80 - z(d) } )
         .attr('stroke', 'black')
@@ -157,7 +224,7 @@ d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_
       .data(valuesToShow)
       .enter()
       .append("text")
-        .attr('x', xLabel + 580)
+        .attr('x', xLabel + 625)
         .attr('y', function(d){ return height - 80 - z(d) } )
         .text( function(d){ return d/1000000 } )
         .style("font-size", 10)
@@ -165,19 +232,19 @@ d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_
 
     // Legend
     svg.append("text")
-      .attr('x', xCircle + 580)
+      .attr('x', xCircle + 630)
       .attr("y", height - 80 +30)
       .text("Population (M)")
       .attr("text-anchor", "middle")
 
     // Legend
     var size = 20
-    var allgroups = ["Latin America & Caribbean", "Europe & Central Asia", "Sub-Saharan Africa", "East Asia & Pacific", "South Asia", "Middle East & North Africa", "North America"]
+    var allgroups = ["LCR", "ECA", "SSA", "EAP", "SAR", "MNA", "NAR"]
     svg.selectAll("myrect")
       .data(allgroups)
       .enter()
       .append("circle")
-        .attr("cx", 900)
+        .attr("cx", 1000)
         .attr("cy", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
         .attr("r", 7)
         .style("fill", function(d){ return myColor(d)})
@@ -189,7 +256,7 @@ d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/scatter_
       .data(allgroups)
       .enter()
       .append("text")
-        .attr("x", 900 + size*.8)
+        .attr("x", 1000 + size*.8)
         .attr("y", function(d,i){ return i * (size + 5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
         .style("fill", function(d){ return myColor(d)})
         .text(function(d){ return d})
