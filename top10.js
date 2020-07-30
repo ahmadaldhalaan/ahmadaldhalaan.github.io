@@ -82,6 +82,125 @@ d3.csv("https://raw.githubusercontent.com/ahmadaldhalaan/EdStats/master/enrollme
           )
           .attr("stroke", function(d){ return myColor(selectedGroup) })
 
+australiaLine = svg
+      .append("line")
+      .attr("x1", x(1992) )
+      .attr("x2", x(1992) )
+      .attr("y1", y(0))
+      .attr("y2", y(140))
+      .attr("stroke", function(d) {
+            if (selectedGroup == "Australia") {return "black"}
+            else 	{australiaLine.remove()}
+        ;})
+      .attr("stroke-dasharray", "4")
+      
+
+     australiaText = svg
+    .append("text")
+    .attr("x", x(1993))
+    .attr("y", y(130))
+    .text(function(d) {
+            if (selectedGroup == "Australia") {return "Dawkins Revolution"}
+            else 	{australiaText.remove() }
+        ;})
+    .style("font-size", "12px")
+      
+      greeceLine1 = svg
+      .append("line")
+      .attr("x1", x(1999) )
+      .attr("x2", x(1999) )
+      .attr("y1", y(0))
+      .attr("y2", y(140))
+      .attr("stroke", function(d) {
+            if (selectedGroup == "Greece") {return "black"}
+            else 	{greeceLine1.remove()}
+        ;})
+      .attr("stroke-dasharray", "4")
+   
+
+     greeceText1 = svg
+    .append("text")
+    .attr("x", x(1990))
+    .attr("y", y(90))
+    .text(function(d) {
+            if (selectedGroup == "Greece") {return "11.25% UR"}
+            else 	{greeceText1.remove() }
+        ;})
+    .style("font-size", "15px")
+
+greeceLine2 = svg
+      .append("line")
+      .attr("x1", x(2017) )
+      .attr("x2", x(2017) )
+      .attr("y1", y(0))
+      .attr("y2", y(140))
+      .attr("stroke", function(d) {
+            if (selectedGroup == "Greece") {return "black"}
+            else 	{greeceLine2.remove()}
+        ;})
+      .attr("stroke-dasharray", "4")
+   
+
+     greeceText2 = svg
+    .append("text")
+    .attr("x", x(2008))
+    .attr("y", y(50))
+    .text(function(d) {
+            if (selectedGroup == "Greece") {return "23.54% UR"}
+            else 	{greeceText2.remove() }
+        ;})
+    .style("font-size", "15px")
+
+
+
+saudiLine1 = svg
+      .append("line")
+      .attr("x1", x(2002) )
+      .attr("x2", x(2002) )
+      .attr("y1", y(0))
+      .attr("y2", y(140))
+      .attr("stroke", function(d) {
+            if (selectedGroup == "Saudi Arabia") {return "green"}
+            else 	{saudiLine1.remove()}
+        ;})
+      .attr("stroke-dasharray", "4")
+      
+
+     saudiText1 = svg
+    .append("text")
+    .attr("x", x(1992))
+    .attr("y", y(100))
+    .text(function(d) {
+            if (selectedGroup == "Saudi Arabia") {return "21 institutions"}
+            else 	{saudiText1.remove() }
+        ;})
+    .style("font-size", "15px")
+
+saudiLine2 = svg
+      .append("line")
+      .attr("x1", x(2017) )
+      .attr("x2", x(2017) )
+      .attr("y1", y(0))
+      .attr("y2", y(140))
+      .attr("stroke", function(d) {
+            if (selectedGroup == "Saudi Arabia") {return "green"}
+            else 	{saudiLine2.remove()}
+        ;})
+      .attr("stroke-dasharray", "4")
+      
+
+     saudiText2 = svg
+    .append("text")
+    .attr("x", x(2007))
+    .attr("y", y(120))
+    .text(function(d) {
+            if (selectedGroup == "Saudi Arabia") {return "55 institutions"}
+            else 	{saudiText2.remove() }
+        ;})
+    .style("font-size", "15px")
+
+
+
     }
 
     // Button change
